@@ -12,7 +12,7 @@ body {
   border: 1px solid white;
   padding: 10px 20px;
   text-align: center;
-  overflow: auto; /* Add this line to make the div scrollable */
+  overflow: auto;
   display: block;
   width: 97vw;
 }
