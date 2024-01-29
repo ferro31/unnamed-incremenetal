@@ -22,21 +22,21 @@ function createUpgradeButtons(upData, type = 'x') {
     switch (type) {
       case 'x':
         upgradeElements = [
-          { text: 'Upgrade', className: 'pUp' },
-          { text: `+${giver}x/s`, className: 'pUp', id: `upgradeGive${id}${type}` },
-          { text: costText, className: 'pUp', id: `upgradeCost${id}${type}` }
+          { text: 'Level 0', className: 'level', id: `upgradeLevel${id}${type}` },
+          { text: `+${giver}x/s`, className: 'give', id: `upgradeGive${id}${type}` },
+          { text: costText, className: 'cost', id: `upgradeCost${id}${type}` }
         ];
       case 'y':
         upgradeElements = [
-          { text: 'Upgrade', className: 'pUp' },
-          { text: `×${giver}x/s`, className: 'pUp', id: `upgradeGive${id}${type}` },
-          { text: costText, className: 'pUp', id: `upgradeCost${id}${type}` }
+          { text: 'Level 0', className: 'level', id: `upgradeLevel${id}${type}` },
+          { text: `×${giver}x/s`, className: 'give', id: `upgradeGive${id}${type}` },
+          { text: costText, className: 'cost', id: `upgradeCost${id}${type}` }
         ];
       case 'z':
         upgradeElements = [
-          { text: 'Upgrade', className: 'pUp' },
-          { text: `×${giver}y`, className: 'pUp', id: `upgradeGive${id}${type}` },
-          { text: costText, className: 'pUp', id: `upgradeCost${id}${type}` }
+          { text: 'Level 0', className: 'level', id: `upgradeLevel${id}${type}` },
+          { text: `×${giver}y`, className: 'give', id: `upgradeGive${id}${type}` },
+          { text: costText, className: 'cost', id: `upgradeCost${id}${type}` }
         ];
     }
 
