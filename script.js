@@ -7,6 +7,7 @@ let game = {
 
   xMulti: 1,
   xMultiPP: 1,
+  xMultiFinalNoxUpgrades: 1, 
   xMultiFinal: 1,
 
   yMulti: 1,
@@ -17,15 +18,22 @@ let game = {
 };
 
 function calculateVars() {
-  game.xMultiFinal = game.xMulti * (game.y + 1) * game.xMultiPP * 0.01;
+  game.xMultiFinalNoxUpgrades = (game.y + 1) * game.xMultiPP
+  game.xMultiFinal = game.xMulti * game.xMultiFinalNoxUpgrades * 0.01;
   game.yMulti = game.z + 1;
   game.x += game.xMultiFinal;
   game.levels = calculateLevels();
   game.pendingPP = calculatePendingPP();
 }
 
+function check_unlocks() {
+  if (game.pendingPP > 1) {
+    document.getElementById("pswitch").classList.remove("inactive");
+  }
+}
+
 function prestige() {
-  if (game.pendingPP > 0) {
+  if (game.pendingPP > 1) {
     resetCosts(upgradesDatax);
     resetCosts(upgradesDatay);
     resetCosts(upgradesDataz);
@@ -100,21 +108,17 @@ function updateTexts() {
       const button = document.getElementById(`upgrade${buttonId}${type[0]}`);
       const currentCost = upgrade.cost;
 
+      element2.innerText = upgrade.text[0].replace("R", formatNumber(upgrade.giver * game.xMultiFinalNoxUpgrades));
+      element.innerText = upgrade.text[1].replace("R", formatNumber(currentCost));
       switch (type[0]) {
-        case 'x':
-          element.innerText = `Cost: ${formatNumber(currentCost)}x`;
-          element2.innerText = `+${formatNumber(upgrade.giver * (game.y + 1) * game.xMultiPP)}x/s`;
+        case "x":
           button.classList.toggle("affordable", currentCost <= game.x);
           break;
-        case 'y':
-          element.innerText = `Cost: ${formatNumber(currentCost)}x`;
-          element2.innerText = `×${formatNumber(upgrade.giver * game.yMulti)}x/s`;
-          button.classList.toggle("affordable", currentCost <= game.x);
-          break;
-        case 'z':
-          element.innerText = `Cost: ${formatNumber(currentCost)}y`;
-          element2.innerText = `×${formatNumber(upgrade.giver)}y`;
+        case "x":
           button.classList.toggle("affordable", currentCost <= game.y);
+          break;
+        case "y":
+          button.classList.toggle("affordable", currentCost <= game.z);
           break;
       }
     }
@@ -150,6 +154,7 @@ function updateTexts() {
 function update() {
   calculateVars();
   updateTexts();
+  check_unlocks();
 }
 
 document.addEventListener("DOMContentLoaded", function () {

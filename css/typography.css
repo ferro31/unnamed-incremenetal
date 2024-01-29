@@ -1,58 +1,15 @@
-body {
-  background-color: black;
-  font-family: Helvetica, Arial, sans-serif;
-  justify-content: center;
-  height: 100vh;
-  margin: 20px 0 0 0;
-  text-align: center;
-  height: 500px;
-}
-
-.main {
-  border: 1px solid white;
-  padding: 10px 20px;
-  text-align: center;
-  overflow: auto;
-  display: block;
-  width: 97vw;
-}
-
-.upgrade-buttons-container {
-  white-space: nowrap;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #4CAF50 #f1f1f1;
-  margin-bottom: 15px;
-  background-color: rgb(50, 50, 50);
-  border-radius: 15px;
-}
-
-.points {
+.points,
+.var,
+.ptext,
+.ptext2,
+.pbutton,
+.pupgrade,
+.menutoggle,
+.pointUpgrade,
+.formula,
+.pUp {
   color: white;
   font-size: 30px;
-}
-
-.var {
-  color: white;
-  font-size: 30px;
-}
-
-.vars {
-  border: 1px solid white;
-  padding: 10px 20px;
-  text-align: left;
-  display: block;
-  width: 97vw;
-}
-
-.maincontainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-
-p {
   margin: 0;
 }
 
@@ -89,7 +46,7 @@ p {
   margin-top: 50px;
   border: solid rgb(50, 50, 50);
   background-color: rgb(100, 100, 100);
-  color:rgb(211, 228, 216);
+  color: rgb(211, 228, 216);
   transition: background-color 0.3s ease;
 }
 
@@ -120,25 +77,12 @@ p {
   background-color: rgb(171, 188, 176);
 }
 
-.menu {
-  display: none; /* Hide all menus by default */
-}
-.menu.active {
-  display: block; /* Display the active menu */
-}
-
 .pointUpgrade {
   padding: 0 20px;
   background-color: rgb(100, 100, 100);
   border: solid 2px rgb(200, 200, 200);
   border-radius: 20px;
   transition: background-color 0.3s ease;
-}
-
-.formula {
-  color: white;
-  margin-bottom: 35px;
-  font-size: 12.5px;
 }
 
 .pointUpgrade:hover {
@@ -154,29 +98,4 @@ p {
   font-size: 17.5px;
   color: transparent;
   text-shadow: 1px 1px 1px #ffffff;
-}
-
-.affordable {
-  background-color: rgb(0, 100, 0);
-}
-
-.affordable:hover {
-  background-color: rgb(0, 75, 0);
-}
-
-.affordable:active {
-  background-color: rgb(0, 50, 0);
-}
-
-.upgrade-buttons-container::-webkit-scrollbar {
-  width: 6px;
-}
-
-.upgrade-buttons-container::-webkit-scrollbar-thumb {
-  background-color: gray;
-  border-radius: 10px;
-}
-
-.upgrade-buttons-container::-webkit-scrollbar-track {
-  background-color: black;
 }

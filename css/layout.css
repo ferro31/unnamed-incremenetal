@@ -1,0 +1,41 @@
+body {
+    background-color: black;
+    font-family: Helvetica, Arial, sans-serif;
+    justify-content: center;
+    height: 100vh;
+    margin: 20px 0 0 0;
+    text-align: center;
+    height: 500px;
+  }
+  
+  .main {
+    border: 1px solid white;
+    padding: 10px 20px;
+    text-align: center;
+    overflow: auto;
+    display: block;
+    width: 97vw;
+  }
+  
+  .vars {
+    border: 1px solid white;
+    padding: 10px 20px;
+    text-align: left;
+    display: block;
+    width: 97vw;
+  }
+  
+  .maincontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .menu {
+    display: none; /* Hide all menus by default */
+  }
+  .menu.active {
+    display: block; /* Display the active menu */
+  }
+  

@@ -1,0 +1,40 @@
+.pbutton:hover {
+    background-color: rgb(191, 203, 208);
+  }
+  
+  .pbutton:active {
+    background-color: rgb(171, 183, 188);
+  }
+  
+  .pupgrade:hover {
+    background-color: rgb(80, 80, 80);
+  }
+  
+  .pupgrade:active {
+    background-color: rgb(60, 60, 60);
+  }
+  
+  .menutoggle:hover {
+    background-color: rgb(191, 208, 196);
+  }
+  
+  .menutoggle:active {
+    background-color: rgb(171, 188, 176);
+  }
+  
+  .pointUpgrade:hover {
+    background-color: rgb(75, 75, 75);
+  }
+  
+  .pointUpgrade:active {
+    background-color: rgb(50, 50, 50);
+  }
+  
+  .affordable:hover {
+    background-color: rgb(0, 75, 0);
+  }
+  
+  .affordable:active {
+    background-color: rgb(0, 50, 0);
+  }
+  

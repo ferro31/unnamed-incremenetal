@@ -1,0 +1,32 @@
+.upgrade-buttons-container {
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #4CAF50 #f1f1f1;
+    margin-bottom: 15px;
+    background-color: rgb(50, 50, 50);
+    border-radius: 15px;
+  }
+  
+  .inactive {
+    display: none;
+  }
+  
+  .affordable {
+    background-color: rgb(0, 100, 0);
+  }
+  
+  .affordable:hover {
+    background-color: rgb(0, 75, 0);
+  }
+  
+  .affordable:active {
+    background-color: rgb(0, 50, 0);
+  }
+  
+  .formula {
+    color: white;
+    margin-bottom: 35px;
+    font-size: 12.5px;
+  }
+  
