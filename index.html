@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="/style.css" />
+
+    <script src="/script.js" defer></script>
+    <script src="/upgrades.js" defer></script>
+    <script src="/button-generator.js" defer></script>
+  </head>
+
+  <body>
+    <div class="maincontainer">
+      <div>
+        <div class="vars">
+          <p id="xvar" class="var">x: 1/s</p>
+          <p id="yvar" class="var">y: 1/s</p>
+          <p id="zvar" class="var">z: 1/s</p>
+          <p id="levels" class="var">Points: 6.34e34</p>
+        </div>
+
+        <button onclick="toggleMenu('menu1')" class="menutoggle">Buttons</button>
+        <button onclick="toggleMenu('menu2')" class="menutoggle">Prestige</button>
+
+        <div id="menu1" class="menu">
+          <div class="main">
+            <div id="xupgradeButtonsContainer" class="upgrade-buttons-container">
+              <!-- Upgrade buttons will be dynamically added here -->
+            </div>
+            <div id="yupgradeButtonsContainer" class="upgrade-buttons-container">
+              <!-- Upgrade buttons will be dynamically added here -->
+            </div>
+            <div id="zupgradeButtonsContainer" class="upgrade-buttons-container">
+              <!-- Upgrade buttons will be dynamically added here -->
+            </div>
+          </div>
+        </div>
+        <div id="menu2" class="menu active">
+          <div class="main">
+            <p class="ptext">Prestige</p>
+            <p class="ptext2">Prestiging gives you pp which you can spend on op upgrades</p>
+            <button class="pbutton" id="pbutton" onclick="prestige()">Prestige for +kysbitch</button>
+            <p class="ptext" style="color: white;" id="ppvar">0</p>
+            <div class="pupgrades" id="pupgrades">
+              <button class="pupgrade" id="pup1" onclick="pupgrade(1)">
+                <div id="upgradeGive1">×2x</div>
+                <div id="upgradeCost1">1pp</div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

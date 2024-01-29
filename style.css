@@ -1,0 +1,182 @@
+body {
+  background-color: black;
+  font-family: Helvetica, Arial, sans-serif;
+  justify-content: center;
+  height: 100vh;
+  margin: 20px 0 0 0;
+  text-align: center;
+  height: 500px;
+}
+
+.main {
+  border: 1px solid white;
+  padding: 10px 20px;
+  text-align: center;
+  overflow: auto; /* Add this line to make the div scrollable */
+  display: block;
+  width: 97vw;
+}
+
+.upgrade-buttons-container {
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #4CAF50 #f1f1f1;
+  margin-bottom: 15px;
+  background-color: rgb(50, 50, 50);
+  border-radius: 15px;
+}
+
+.points {
+  color: white;
+  font-size: 30px;
+}
+
+.var {
+  color: white;
+  font-size: 30px;
+}
+
+.vars {
+  border: 1px solid white;
+  padding: 10px 20px;
+  text-align: left;
+  display: block;
+  width: 97vw;
+}
+
+.maincontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+p {
+  margin: 0;
+}
+
+.ptext {
+  color: rgb(200, 200, 200);
+  font-size: 30px;
+}
+
+.ptext2 {
+  color: rgb(175, 175, 175);
+  font-size: 15px;
+}
+
+.pbutton {
+  margin-top: 35px;
+  font-size: 17.5px;
+  background-color: rgb(211, 223, 228);
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: solid white;
+}
+
+.pbutton:hover {
+  background-color: rgb(191, 203, 208);
+}
+
+.pbutton:active {
+  background-color: rgb(171, 183, 188);
+}
+
+.pupgrade {
+  font-size: 20px;
+  padding: 10px 50px;
+  margin-top: 50px;
+  border: solid rgb(50, 50, 50);
+  background-color: rgb(100, 100, 100);
+  color:rgb(211, 228, 216);
+  transition: background-color 0.3s ease;
+}
+
+.pupgrade:hover {
+  background-color: rgb(80, 80, 80);
+}
+
+.pupgrade:active {
+  background-color: rgb(60, 60, 60);
+}
+
+.menutoggle {
+  margin: 5px;
+  font-weight: bold;
+  font-size: 17.5px;
+  background-color: rgb(211, 228, 216);
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: solid rgb(223, 206, 206);
+  transition: background-color 0.3s ease;
+}
+
+.menutoggle:hover {
+  background-color: rgb(191, 208, 196);
+}
+
+.menutoggle:active {
+  background-color: rgb(171, 188, 176);
+}
+
+.menu {
+  display: none; /* Hide all menus by default */
+}
+.menu.active {
+  display: block; /* Display the active menu */
+}
+
+.pointUpgrade {
+  padding: 0 20px;
+  background-color: rgb(100, 100, 100);
+  border: solid 2px rgb(200, 200, 200);
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.formula {
+  color: white;
+  margin-bottom: 35px;
+  font-size: 12.5px;
+}
+
+.pointUpgrade:hover {
+  background-color: rgb(75, 75, 75);
+}
+
+.pointUpgrade:active {
+  background-color: rgb(50, 50, 50);
+}
+
+.pUp {
+  margin: 5px 0 5px 0;
+  font-size: 17.5px;
+  color: transparent;
+  text-shadow: 1px 1px 1px #ffffff;
+}
+
+.affordable {
+  background-color: rgb(0, 100, 0);
+}
+
+.affordable:hover {
+  background-color: rgb(0, 75, 0);
+}
+
+.affordable:active {
+  background-color: rgb(0, 50, 0);
+}
+
+.upgrade-buttons-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.upgrade-buttons-container::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 10px;
+}
+
+.upgrade-buttons-container::-webkit-scrollbar-track {
+  background-color: black;
+}
