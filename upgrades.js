@@ -67,7 +67,7 @@ function zUpgrade(buttonId) {
       game.x = 0;
       game.y = 0;
       upgradesDataz[buttonId - 1].cost *= 2;
-      game.z += upgradesDataz[buttonId - 1].giver;
+      game.z += upgradesDataz[buttonId - 1].giver * game.zMulti;
       resetCosts(upgradesDatax);
       resetCosts(upgradesDatay);
   }

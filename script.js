@@ -11,6 +11,8 @@ let game = {
   xMultiFinal: 1,
 
   yMulti: 1,
+  zMulti: 1,
+
   levels: 0,
 
   pendingPP: 0,
@@ -108,17 +110,19 @@ function updateTexts() {
       const button = document.getElementById(`upgrade${buttonId}${type[0]}`);
       const currentCost = upgrade.cost;
 
-      element2.innerText = upgrade.text[0].replace("R", formatNumber(upgrade.giver * game.xMultiFinalNoxUpgrades));
       element.innerText = upgrade.text[1].replace("R", formatNumber(currentCost));
       switch (type[0]) {
         case "x":
+          element2.innerText = upgrade.text[0].replace("R", formatNumber(upgrade.giver * game.xMultiFinalNoxUpgrades));
           button.classList.toggle("affordable", currentCost <= game.x);
           break;
-        case "x":
-          button.classList.toggle("affordable", currentCost <= game.y);
-          break;
         case "y":
-          button.classList.toggle("affordable", currentCost <= game.z);
+          element2.innerText = upgrade.text[0].replace("R", formatNumber(upgrade.giver * game.yMulti));
+          button.classList.toggle("affordable", currentCost <= game.x);
+          break;
+        case "z":
+          element2.innerText = upgrade.text[0].replace("R", formatNumber(upgrade.giver * game.zMulti));
+          button.classList.toggle("affordable", currentCost <= game.y);
           break;
       }
     }

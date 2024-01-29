@@ -2,12 +2,12 @@
     width: 6px;
   }
   
-.upgrade-buttons-container::-webkit-scrollbar-thumb {
-  background-color: gray;
-  border-radius: 10px;
-}
-
-.upgrade-buttons-container::-webkit-scrollbar-track {
-  background-color: black;
-}
+  .upgrade-buttons-container::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 10px;
+  }
+  
+  .upgrade-buttons-container::-webkit-scrollbar-track {
+    background-color: black;
+  }
   
