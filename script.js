@@ -17,6 +17,8 @@ let game = {
 
   pendingPP: 0,
   pp: 0,
+
+  currentUnlock: 0,
 };
 
 function calculateVars() {
@@ -31,6 +33,9 @@ function calculateVars() {
 function check_unlocks() {
   if (game.pendingPP > 1) {
     document.getElementById("pswitch").classList.remove("inactive");
+    if (game.currentUnlock == 0) {
+      game.currentUnlock += 1
+    }
   }
 }
 
@@ -154,7 +159,15 @@ function updateTexts() {
   document.getElementById("zvar").innerHTML =
     "z: " + formatNumber(game.z);
 
-    document.getElementById("ppvar").innerHTML = formatNumber(game.pp);
+  document.getElementById("ppvar").innerHTML = formatNumber(game.pp);
+
+  if (game.currentUnlock == 0) {
+    document.getElementById("unlockprogress").value = game.pendingPP
+    document.getElementById("unlockprogresstext").innerHTML = "Next unlock: prestige"
+  } else {
+    document.getElementById("unlockprogress").classList.add("inactive")
+    document.getElementById("unlockprogresstext").classList.add("inactive")
+  }
 }
 
 function update() {
