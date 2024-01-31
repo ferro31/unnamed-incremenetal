@@ -101,7 +101,7 @@ function zUpgrade(buttonId) {
     resetCosts(upgradesDatax);
     resetCosts(upgradesDatay);
     upgradesDatax = resetlevels(upgradesDatax)
-    upgradesDatax = resetlevels(upgradesDatay)
+    upgradesDatay = resetlevels(upgradesDatay)
   }
 }
 
@@ -109,12 +109,15 @@ function pupgrade(buttonId) {
   const currentCost = upgradesDatapp[buttonId - 1].cost;
 
   if (game.pp >= currentCost) {
-      game.pp -= currentCost
-      upgradesDatapp[buttonId - 1].cost *= 2.5;
-      console.log(upgradesDatapp[buttonId - 1])
-      upgradesDatapp[buttonId - 1].giver();
-      upgradesDatapp[buttonId - 1].level += 1;
-      upgradesDatapp[buttonId - 1].milestones = Math.floor(upgradesDatapp[buttonId - 1].level / 25)
+    game.pp -= currentCost
+    upgradesDatapp[buttonId - 1].cost *= 2.5;
+    console.log(upgradesDatapp[buttonId - 1])
+    upgradesDatapp[buttonId - 1].giver();
+    upgradesDatapp[buttonId - 1].level += 1;
+    upgradesDatapp[buttonId - 1].milestones = Math.floor(upgradesDatapp[buttonId - 1].level / 25)
+    upgradesDatax = resetlevels(upgradesDatax)
+    upgradesDatay = resetlevels(upgradesDatay)
+    upgradesDataz = resetlevels(upgradesDataz)
   }
 }
 
