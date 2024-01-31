@@ -75,9 +75,10 @@ function yUpgrade(buttonId) {
   const currentCost = upgradesDatay[buttonId - 1].cost;
 
   if (game.x >= currentCost) {
+      button = upgradesDatay[buttonId - 1]
       game.x = 0;
-      upgradesDatay[buttonId - 1].cost *= 2.5;
-      game.y += upgradesDatay[buttonId - 1].giver * game.yMulti * (button.milestoneBonus ** upgradesDatay[buttonId - 1].milestones);
+      upgradesDatay[buttonId - 1].cost *= 2.5; 
+      game.y += upgradesDatay[buttonId - 1].giver * game.yMultiFinal * (button.milestoneBonus ** upgradesDatay[buttonId - 1].milestones);
       game.xMulti = 1;
       upgradesDatay[buttonId - 1].level += 1;
       upgradesDatay[buttonId - 1].milestones = Math.floor(upgradesDatay[buttonId - 1].level / 25)
@@ -89,10 +90,11 @@ function zUpgrade(buttonId) {
   const currentCost = upgradesDataz[buttonId - 1].cost;
 
   if (game.y >= currentCost) {
+      button = upgradesDataz[buttonId - 1]
       game.x = 0;
       game.y = 0;
       upgradesDataz[buttonId - 1].cost *= 3;
-      game.z += upgradesDataz[buttonId - 1].giver * game.zMulti * (button.milestoneBonus ** upgradesDataz[buttonId - 1].milestones);
+      game.z += upgradesDataz[buttonId - 1].giver * game.zMultiFinal * (button.milestoneBonus ** upgradesDataz[buttonId - 1].milestones);
       upgradesDataz[buttonId - 1].level += 1;
       upgradesDataz[buttonId - 1].milestones = Math.floor(upgradesDataz[buttonId - 1].level / 25)
       resetCosts(upgradesDatax);
@@ -144,13 +146,13 @@ function generate(element, count, scaling, bases) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  saveBaseCosts()
   upgradesDatax = generate({ id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
                             10, [3.1, 2.1], [5, 1])
   upgradesDatay = generate({ id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Ry", "Cost: Rx"] },
                             5, [3.2, 2.1], [5000, 1])
   upgradesDataz = generate({ id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rz", "Cost: Ry"] },
                             3, [3.3, 2.1], [10, 1])
+  saveBaseCosts()
   createUpgradeButtons(upgradesDatax, 'x');
   createUpgradeButtons(upgradesDatay, 'y');
   createUpgradeButtons(upgradesDataz, 'z');
