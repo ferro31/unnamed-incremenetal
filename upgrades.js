@@ -29,6 +29,7 @@ let upgradesDataz = [
   { id: 1, cost: 10, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rz", "Cost: Ry"] },
 ];
 
+let def = []
 
 
 let upgradesDatapp = [
@@ -68,6 +69,54 @@ function xUpgrade(buttonId) {
     game.xMulti += upgradesDatax[buttonId - 1].giver * (button.milestoneBonus ** upgradesDatax[buttonId - 1].milestones)
     upgradesDatax[buttonId - 1].level += 1;
     upgradesDatax[buttonId - 1].milestones = Math.floor(upgradesDatax[buttonId - 1].level / 25)
+    
+    if (buttonId == upgradesDatax.length) {
+      generatemore("x")
+    }
+  }
+}
+
+function generatemore(type) {
+  switch (type) {
+    case "x":
+      upgradesDatax = generate({ id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
+      10, [3.1, 2.1], [5, 1], [upgradesDatax[upgradesDatax.length - 1].id, upgradesDatax])
+      clear("x")
+      createUpgradeButtons(upgradesDatax, 'x');
+      break;
+    case "y":
+      upgradesDatay = generate({ id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Ry", "Cost: Rx"] },
+                            5, [3.2, 2.1], [5000, 1], [upgradesDatay[upgradesDatay.length - 1].id, upgradesDatay])
+      
+      clear("y")
+      createUpgradeButtons(upgradesDatay, 'y');
+      break;
+    case "z":
+      upgradesDataz = generate({ id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rz", "Cost: Ry"] },
+                              3, [3.3, 2.1], [10, 1], [upgradesDataz[upgradesDataz.length - 1].id, upgradesDataz])
+      clear("z")
+      createUpgradeButtons(upgradesDataz, 'z');
+      break;
+  }
+}
+
+function resetcompletly(type) {
+  switch (type) {
+    case "x":
+      clear("x")
+      upgradesDatax = def[0]
+      createUpgradeButtons(upgradesDatax, 'x');
+      break;
+    case "y":
+      clear("y")
+      upgradesDatax = def[1]
+      createUpgradeButtons(upgradesDatay, 'y');
+      break;
+    case "z":
+      clear("z")
+      upgradesDatax = def[2]
+      createUpgradeButtons(upgradesDataz, 'z');
+      break;
   }
 }
 
@@ -84,6 +133,10 @@ function yUpgrade(buttonId) {
     upgradesDatay[buttonId - 1].milestones = Math.floor(upgradesDatay[buttonId - 1].level / 25)
     resetCosts(upgradesDatax);
     upgradesDatax = resetlevels(upgradesDatax)
+
+    if (buttonId == upgradesDatay.length) {
+      generatemore("y")
+    }
   }
 }
 
@@ -102,6 +155,10 @@ function zUpgrade(buttonId) {
     resetCosts(upgradesDatay);
     upgradesDatax = resetlevels(upgradesDatax)
     upgradesDatay = resetlevels(upgradesDatay)
+
+    if (buttonId == upgradesDataz.length) {
+      generatemore("z")
+    }
   }
 }
 
@@ -131,6 +188,8 @@ function saveBaseCosts() {
   upgradesDataz = upgradesDataz.map(item => {
     return { ...item, base: item.cost };
   });
+
+  def = [upgradesDatax, upgradesDatay, upgradesDataz]
 }
 
 function resetCosts(u) {
@@ -139,20 +198,33 @@ function resetCosts(u) {
   }
 }
 
-function generate(element, count, scaling, bases) {
+function generate(element, count, scaling, bases, starting=[0, null]) {
+  if (starting[1] != null) {
+    this.list = starting[1];
+    for (let i = 0; i < count; i++) {
+        let modifiedElement = {...element}
+        modifiedElement.cost = bases[0] * Math.floor(scaling[0] ** (i + starting[0]))
+        modifiedElement.base = bases[0] * Math.floor(scaling[0] ** (i + starting[0]))
+        modifiedElement.giver = bases[1] * Math.floor(scaling[1] ** (i + starting[0]))
+        modifiedElement.id = i + 1 + starting[0]
+        this.list.push(modifiedElement);
+    }
+    return this.list;
+  }
   this.list = [];
   for (let i = 0; i < count; i++) {
       let modifiedElement = {...element}
-      modifiedElement.cost = bases[0] * Math.floor(scaling[0] ** (i))
-      modifiedElement.giver = bases[1] * Math.floor(scaling[1] ** (i))
-      modifiedElement.id = i + 1
+      modifiedElement.cost = bases[0] * Math.floor(scaling[0] ** (i + starting[0]))
+      modifiedElement.giver = bases[1] * Math.floor(scaling[1] ** (i + starting[0]))
+      modifiedElement.base = bases[0] * Math.floor(scaling[0] ** (i + starting[0]))
+      modifiedElement.id = i + 1 + starting[0]
       this.list.push(modifiedElement);
   }
   return this.list;
 }
 
 function resetlevels(data) {
-  return upgradesDatax.map(item => {
+  return data.map(item => {
     return { ...item, level: 0 };
   });
 }

@@ -52,3 +52,7 @@ function createUpgradeButtons(upData, type = 'x') {
     container.appendChild(button);
   });
 }
+
+function clear(type) {
+  document.getElementById(type + "upgradeButtonsContainer").innerHTML = ""
+}

@@ -124,6 +124,9 @@ function updateTexts() {
       const button = document.getElementById(`upgrade${buttonId}${type[0]}`);
       const currentCost = upgrade.cost;
 
+      if (element == null) {
+        console.log(`upgradeCost${buttonId}${type[0]}`);
+      }
       element.innerText = upgrade.text[2].replace("R", formatNumber(currentCost));
       element3.innerText = upgrade.text[0].replace("R", upgrade.level).replace("t", upgrade.milestones);
       switch (type[0]) {
