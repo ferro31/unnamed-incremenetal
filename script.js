@@ -11,7 +11,12 @@ let game = {
   xMultiFinal: 1,
 
   yMulti: 1,
+  yMultiPP: 1,
+  yMultiFinal: 1,
+
   zMulti: 1,
+  zMultiPP: 1,
+  zMultiFinal: 1,
 
   levels: 0,
 
@@ -23,8 +28,11 @@ let game = {
 
 function calculateVars() {
   game.xMultiFinalNoxUpgrades = (game.y + 1) * game.xMultiPP
+
   game.xMultiFinal = game.xMulti * game.xMultiFinalNoxUpgrades * 0.01;
-  game.yMulti = game.z + 1;
+  game.yMultiFinal = (game.z + 1) * game.yMultiPP;
+  game.zMultiFinal = game.zMulti * game.zMultiPP;
+
   game.x += game.xMultiFinal;
   game.levels = calculateLevels();
   game.pendingPP = calculatePendingPP();
@@ -124,11 +132,11 @@ function updateTexts() {
           button.classList.toggle("affordable", currentCost <= game.x);
           break;
         case "y":
-          element2.innerText = upgrade.text[1].replace("R", formatNumber(upgrade.giver * game.yMulti * (upgrade.milestoneBonus ** upgrade.milestones)));
+          element2.innerText = upgrade.text[1].replace("R", formatNumber(upgrade.giver * game.yMultiFinal * (upgrade.milestoneBonus ** upgrade.milestones)));
           button.classList.toggle("affordable", currentCost <= game.x);
           break;
         case "z":
-          element2.innerText = upgrade.text[1].replace("R", formatNumber(upgrade.giver * game.zMulti * (upgrade.milestoneBonus ** upgrade.milestones)));
+          element2.innerText = upgrade.text[1].replace("R", formatNumber(upgrade.giver * game.zMultiFinal * (upgrade.milestoneBonus ** upgrade.milestones)));
           button.classList.toggle("affordable", currentCost <= game.y);
           break;
       }
@@ -138,11 +146,13 @@ function updateTexts() {
       const buttonId = upgrade.id;
       const element = document.getElementById(`upgradeCost${buttonId}`);
       const element2 = document.getElementById(`upgradeGive${buttonId}`);
+      const element3 = document.getElementById(`upgradeLevel${buttonId}`);
       const button = document.getElementById(`pup${buttonId}`);
       const currentCost = upgrade.cost;
 
-      element.innerText = `${formatNumber(currentCost)}pp`;
-      element2.innerText = upgrade.text;
+      element.innerText = upgrade.text[2].replace("R", formatNumber(currentCost));
+      element2.innerText = upgrade.text[1].replace("R", formatNumber(upgrade.giver));
+      element3.innerText = upgrade.text[0].replace("R", upgrade.level).replace("t", upgrade.milestones);
       button.classList.toggle("affordable", currentCost <= game.pp);
     }
 

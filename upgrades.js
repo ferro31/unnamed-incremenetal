@@ -33,12 +33,28 @@ let upgradesDataz = [
 
 let upgradesDatapp = [
   { 
-    id: 1, 
-    cost: 1, 
+    level: 0, milestones: 0, milestoneBonus: msbonus,
+    text: ["Level R (t)", "×2.5x", "Rpp"], 
+    id: 1, cost: 1, 
     giver: function() {
-      game.xMultiPP += 1;
+      game.xMultiPP *= 2.5 * (this.milestoneBonus ** this.milestones);
     },
-    text: "×1x",
+  },
+  { 
+    level: 0, milestones: 0, milestoneBonus: msbonus,
+    text: ["Level R (t)", "×2y,", "Rpp"], 
+    id: 2, cost: 3, 
+    giver: function() {
+      game.yMultiPP *= 2 * (this.milestoneBonus ** this.milestones);
+    },
+  },
+  { 
+    level: 0, milestones: 0, milestoneBonus: msbonus,
+    text: ["Level R (t)", "×1.5z,", "Rpp"], 
+    id: 3, cost: 10, 
+    giver: function() {
+      game.zMultiPP *= 1.5 * (this.milestoneBonus ** this.milestones);
+    },
   }
 ];
 
@@ -75,7 +91,7 @@ function zUpgrade(buttonId) {
   if (game.y >= currentCost) {
       game.x = 0;
       game.y = 0;
-      upgradesDataz[buttonId - 1].cost *= 2;
+      upgradesDataz[buttonId - 1].cost *= 1.75;
       game.z += upgradesDataz[buttonId - 1].giver * game.zMulti * (button.milestoneBonus ** upgradesDataz[buttonId - 1].milestones);
       upgradesDataz[buttonId - 1].level += 1;
       upgradesDataz[buttonId - 1].milestones = Math.floor(upgradesDataz[buttonId - 1].level / 25)
@@ -89,8 +105,11 @@ function pupgrade(buttonId) {
 
   if (game.pp >= currentCost) {
       game.pp -= currentCost
-      upgradesDatapp[buttonId - 1].cost *= 2.5;
+      upgradesDatapp[buttonId - 1].cost *= 2;
+      console.log(upgradesDatapp[buttonId - 1])
       upgradesDatapp[buttonId - 1].giver();
+      upgradesDatapp[buttonId - 1].level += 1;
+      upgradesDatapp[buttonId - 1].milestones = Math.floor(upgradesDatapp[buttonId - 1].level / 25)
   }
 }
 
