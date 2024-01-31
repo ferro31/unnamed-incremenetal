@@ -187,9 +187,6 @@ function update() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  createUpgradeButtons(upgradesDatax, 'x');
-  createUpgradeButtons(upgradesDatay, 'y');
-  createUpgradeButtons(upgradesDataz, 'z');
 
   const timerInterval = setInterval(update, 1000 / pointSpeed);
 });

@@ -2,12 +2,12 @@ let msbonus = 1.5;
 
 let upgradesDatax = [
   { id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
-  { id: 2, cost: 10, giver: 2, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
-  { id: 3, cost: 30, giver: 4, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
-  { id: 4, cost: 75, giver: 9, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
-  { id: 5, cost: 250, giver: 15, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
-  { id: 6, cost: 765, giver: 23, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
-  { id: 7, cost: 1240, giver: 32, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
+  { id: 2, cost: 25, giver: 4, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
+  { id: 3, cost: 125, giver: 16, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
+  { id: 4, cost: 625, giver: 64, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
+  { id: 5, cost: 250, giver: 256, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
+  { id: 6, cost: 1250, giver: 1024, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
+  { id: 7, cost: 6250, giver: 4096, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
   { id: 8, cost: 6432, giver: 74, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
   { id: 9, cost: 18761, giver: 104, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
   { id: 10, cost: 67899, giver: 211, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
@@ -64,7 +64,7 @@ function xUpgrade(buttonId) {
   if (game.x >= currentCost) {
       button = upgradesDatax[buttonId - 1]
       game.x -= currentCost;
-      upgradesDatax[buttonId - 1].cost *= 1.25;
+      upgradesDatax[buttonId - 1].cost *= 2;
       game.xMulti += upgradesDatax[buttonId - 1].giver * (button.milestoneBonus ** upgradesDatax[buttonId - 1].milestones)
       upgradesDatax[buttonId - 1].level += 1;
       upgradesDatax[buttonId - 1].milestones = Math.floor(upgradesDatax[buttonId - 1].level / 25)
@@ -76,7 +76,7 @@ function yUpgrade(buttonId) {
 
   if (game.x >= currentCost) {
       game.x = 0;
-      upgradesDatay[buttonId - 1].cost *= 1.5;
+      upgradesDatay[buttonId - 1].cost *= 2.5;
       game.y += upgradesDatay[buttonId - 1].giver * game.yMulti * (button.milestoneBonus ** upgradesDatay[buttonId - 1].milestones);
       game.xMulti = 1;
       upgradesDatay[buttonId - 1].level += 1;
@@ -91,7 +91,7 @@ function zUpgrade(buttonId) {
   if (game.y >= currentCost) {
       game.x = 0;
       game.y = 0;
-      upgradesDataz[buttonId - 1].cost *= 1.75;
+      upgradesDataz[buttonId - 1].cost *= 3;
       game.z += upgradesDataz[buttonId - 1].giver * game.zMulti * (button.milestoneBonus ** upgradesDataz[buttonId - 1].milestones);
       upgradesDataz[buttonId - 1].level += 1;
       upgradesDataz[buttonId - 1].milestones = Math.floor(upgradesDataz[buttonId - 1].level / 25)
@@ -105,7 +105,7 @@ function pupgrade(buttonId) {
 
   if (game.pp >= currentCost) {
       game.pp -= currentCost
-      upgradesDatapp[buttonId - 1].cost *= 2;
+      upgradesDatapp[buttonId - 1].cost *= 2.5;
       console.log(upgradesDatapp[buttonId - 1])
       upgradesDatapp[buttonId - 1].giver();
       upgradesDatapp[buttonId - 1].level += 1;
@@ -131,6 +131,27 @@ function resetCosts(u) {
   }
 }
 
+function generate(element, count, scaling, bases) {
+  this.list = [];
+  for (let i = 0; i < count; i++) {
+      let modifiedElement = {...element}
+      modifiedElement.cost = bases[0] * Math.floor(scaling[0] ** (i))
+      modifiedElement.giver = bases[1] * Math.floor(scaling[1] ** (i))
+      modifiedElement.id = i + 1
+      this.list.push(modifiedElement);
+  }
+  return this.list;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   saveBaseCosts()
+  upgradesDatax = generate({ id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rx/s", "Cost: Rx"] },
+                            10, [3.1, 2.1], [5, 1])
+  upgradesDatay = generate({ id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Ry", "Cost: Rx"] },
+                            5, [3.2, 2.1], [5000, 1])
+  upgradesDataz = generate({ id: 1, cost: 5, giver: 1, level: 0, milestones: 0, milestoneBonus: msbonus, text: ["Level R (t)", "+Rz", "Cost: Ry"] },
+                            3, [3.3, 2.1], [10, 1])
+  createUpgradeButtons(upgradesDatax, 'x');
+  createUpgradeButtons(upgradesDatay, 'y');
+  createUpgradeButtons(upgradesDataz, 'z');
 });
