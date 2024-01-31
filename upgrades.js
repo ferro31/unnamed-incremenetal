@@ -62,12 +62,12 @@ function xUpgrade(buttonId) {
   const currentCost = upgradesDatax[buttonId - 1].cost;
 
   if (game.x >= currentCost) {
-      button = upgradesDatax[buttonId - 1]
-      game.x -= currentCost;
-      upgradesDatax[buttonId - 1].cost *= 2;
-      game.xMulti += upgradesDatax[buttonId - 1].giver * (button.milestoneBonus ** upgradesDatax[buttonId - 1].milestones)
-      upgradesDatax[buttonId - 1].level += 1;
-      upgradesDatax[buttonId - 1].milestones = Math.floor(upgradesDatax[buttonId - 1].level / 25)
+    button = upgradesDatax[buttonId - 1]
+    game.x -= currentCost;
+    upgradesDatax[buttonId - 1].cost *= 2;
+    game.xMulti += upgradesDatax[buttonId - 1].giver * (button.milestoneBonus ** upgradesDatax[buttonId - 1].milestones)
+    upgradesDatax[buttonId - 1].level += 1;
+    upgradesDatax[buttonId - 1].milestones = Math.floor(upgradesDatax[buttonId - 1].level / 25)
   }
 }
 
@@ -75,14 +75,15 @@ function yUpgrade(buttonId) {
   const currentCost = upgradesDatay[buttonId - 1].cost;
 
   if (game.x >= currentCost) {
-      button = upgradesDatay[buttonId - 1]
-      game.x = 0;
-      upgradesDatay[buttonId - 1].cost *= 2.5; 
-      game.y += upgradesDatay[buttonId - 1].giver * game.yMultiFinal * (button.milestoneBonus ** upgradesDatay[buttonId - 1].milestones);
-      game.xMulti = 1;
-      upgradesDatay[buttonId - 1].level += 1;
-      upgradesDatay[buttonId - 1].milestones = Math.floor(upgradesDatay[buttonId - 1].level / 25)
-      resetCosts(upgradesDatax);
+    button = upgradesDatay[buttonId - 1]
+    game.x = 0;
+    upgradesDatay[buttonId - 1].cost *= 2.5; 
+    game.y += upgradesDatay[buttonId - 1].giver * game.yMultiFinal * (button.milestoneBonus ** upgradesDatay[buttonId - 1].milestones);
+    game.xMulti = 1;
+    upgradesDatay[buttonId - 1].level += 1;
+    upgradesDatay[buttonId - 1].milestones = Math.floor(upgradesDatay[buttonId - 1].level / 25)
+    resetCosts(upgradesDatax);
+    upgradesDatax = resetlevels(upgradesDatax)
   }
 }
 
@@ -90,15 +91,17 @@ function zUpgrade(buttonId) {
   const currentCost = upgradesDataz[buttonId - 1].cost;
 
   if (game.y >= currentCost) {
-      button = upgradesDataz[buttonId - 1]
-      game.x = 0;
-      game.y = 0;
-      upgradesDataz[buttonId - 1].cost *= 3;
-      game.z += upgradesDataz[buttonId - 1].giver * game.zMultiFinal * (button.milestoneBonus ** upgradesDataz[buttonId - 1].milestones);
-      upgradesDataz[buttonId - 1].level += 1;
-      upgradesDataz[buttonId - 1].milestones = Math.floor(upgradesDataz[buttonId - 1].level / 25)
-      resetCosts(upgradesDatax);
-      resetCosts(upgradesDatay);
+    button = upgradesDataz[buttonId - 1]
+    game.x = 0;
+    game.y = 0;
+    upgradesDataz[buttonId - 1].cost *= 3;
+    game.z += upgradesDataz[buttonId - 1].giver * game.zMultiFinal * (button.milestoneBonus ** upgradesDataz[buttonId - 1].milestones);
+    upgradesDataz[buttonId - 1].level += 1;
+    upgradesDataz[buttonId - 1].milestones = Math.floor(upgradesDataz[buttonId - 1].level / 25)
+    resetCosts(upgradesDatax);
+    resetCosts(upgradesDatay);
+    upgradesDatax = resetlevels(upgradesDatax)
+    upgradesDatax = resetlevels(upgradesDatay)
   }
 }
 
@@ -143,6 +146,12 @@ function generate(element, count, scaling, bases) {
       this.list.push(modifiedElement);
   }
   return this.list;
+}
+
+function resetlevels(data) {
+  return upgradesDatax.map(item => {
+    return { ...item, level: 0 };
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
